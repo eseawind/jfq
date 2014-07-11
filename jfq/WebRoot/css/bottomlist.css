@@ -1,0 +1,132 @@
+*{ margin:0; padding:0;}
+ul{ list-style:none;
+	font-family:Arial, Helvetica, sans-serif;
+	
+	}
+a:link {
+    text-decoration: none;
+}
+.bottomlist .list{
+	height:26px;
+	}
+.bottomlist .list .nav li{
+	width:113px;
+	height:26px;
+	float:left;
+	text-align:center;
+	vertical-align:central; 
+	line-height:26px;
+	color:#FFF;
+	cursor:pointer;
+	font-weight:bold;
+	font-size:14px;
+	}
+	
+	.subnav img{
+	width:120px;
+	height:50px;
+}
+	
+.bottomlist div #one_show{
+			 
+			height:179px;
+			background:url(../images/qiehuan.png) no-repeat;
+			padding-top:26px;
+			}
+	.bottomlist div #one_show dd{
+		float:left; height:70px; margin-left:25px; margin-top:10px;width:140px;
+		}
+		#one_show .pic_yi img{
+	width:120px;
+	height:50px;
+}
+	#one_show p{
+	line-height:25px;
+	text-align:center;
+	font-size:13px;
+	
+}
+.bottomlist div #two_show dd{
+		padding-left:20px;
+				float:left;
+				width:140px;
+	line-height:25px;
+	margin-top:10px;
+	text-align:center;
+}
+.bottomlist div #two_show{
+			 
+			height:179px;
+			display:none;
+			background:url(../images/qiehuan1.png) no-repeat;
+			padding-top:26px;
+			}
+.bottomlist div #two_show .two_show_text{
+width:110px;
+white-space:nowrap;
+overflow:hidden;
+font-size:12px;
+}
+.bottomlist div #three_show{
+		 
+			height:179px;
+			display:none;
+			background:url(../images/qiehuan2.png) no-repeat;
+			padding-top:26px;
+			}
+			.bottomlist div #three_show dd{
+								padding-left:20px;
+								float:left;
+								line-height:25px;
+								width:140px;
+								margin-top:10px;
+								text-align:center;
+								}
+.bottomlist div #four_show{
+			 
+			height:179px;
+			display:none;
+			background:url(../images/qiehuan3.png) no-repeat;
+			padding-top:26px;
+			}
+			.bottomlist div #four_show dd{
+								padding-left:20px;
+								float:left;
+								line-height:25px;
+								width:140px;
+								margin-top:10px;
+								text-align:center;
+								}
+			.bottomlist div .subnav li{
+				width:140px;
+				height:75px;
+				text-align:left;
+				padding-left:30px;
+				padding-top:10px;
+				line-height:12px;
+				float: left;
+				}
+				.bottomlist div .subnav li span{
+				  display:block;
+				  width:110px;
+				  white-space:nowrap;
+                  overflow:hidden;
+                  font-size:12px;
+				} 
+.bottomlist div #five_show{
+			height:179px;
+			display:none;
+			background:url(../images/qiehuan4.png) no-repeat;
+			padding-top:26px;
+			}
+			.bottomlist div #five_show dd{
+								padding-left:20px;
+								float:left;
+								width:140px;
+								line-height:25px;
+								margin-top:10px;
+								text-align:center;
+								}
+			.bottomlist div #five_show img{width:120px;
+	height:55px;} 
+#left .zhushi{ font-size:14px;}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+    <package name="jfq_info" extends="jfq-default" >
+		<!-- 首页 -->
+		<action name="index" class="j001Action" method="init">
+			<result name="init">/WEB-INF/pages/jfq/J001.jsp</result>
+		</action>
+		<!-- 栏目页 -->
+		<action name="j002_*" class="j002Action" method="{1}">
+			<result name="init">/WEB-INF/pages/jfq/J002.jsp</result>
+			<result name="roll">/WEB-INF/pages/jfq/J002_01.jsp</result>
+			<result name="search">/WEB-INF/pages/jfq/J002_02.jsp</result>
+		</action>
+		<!-- 内容页 -->
+		<action name="j003_*" class="j003Action" method="{1}">
+			<result name="init">/WEB-INF/pages/jfq/J003.jsp</result>
+		</action>
+		<!-- 搜索结果页 -->
+		<action name="j004_*" class="j004Action" method="{1}">
+			<result name="init">/WEB-INF/pages/jfq/J004.jsp</result>
+			<result name="init2">/WEB-INF/pages/jfq/J004_01.jsp</result>
+			<result name="list1">/WEB-INF/pages/jfq/J004_02.jsp</result>
+			<result name="datail">/WEB-INF/pages/jfq/J004_03.jsp</result>
+		</action>
+		<!-- 友情链接页 -->
+		<action name="j005_*" class="j005Action" method="{1}">
+			<result name="init">/WEB-INF/pages/jfq/J005.jsp</result>
+		</action>
+	</package>
+</struts>

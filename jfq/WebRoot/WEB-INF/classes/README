@@ -1,0 +1,10 @@
+#2014-04-16
+ALTER TABLE `tc_sys_member`
+ADD COLUMN `addres`  varchar(200) NULL COMMENT '地址' AFTER `tel`;
+
+ALTER TABLE `tc_sys_member`
+ADD COLUMN `contact_name`  varchar(50) NULL COMMENT '联系人名称' AFTER `addres`;
+
+ALTER TABLE `tc_sys_member`
+ADD COLUMN `parent_org`  varchar(200) NULL COMMENT '挂靠机构' AFTER `contact_name`;
+

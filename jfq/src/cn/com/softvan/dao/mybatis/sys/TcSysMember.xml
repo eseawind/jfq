@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.softvan.dao.daointer.sys.ITcSysMemberDao" >
+  <sql id="Base_Column_List" >
+	id,
+	city_id,
+	village_id,
+	town_id,
+	county_id,
+	province_id,
+	version,
+	code,
+	pinyin,
+	name,
+	pic_url,
+	type,
+	certificate_no,
+	certificate_pic_url,
+	industry,
+	sort_num,
+	is_show,
+	detail_info,
+	note,
+	date_created,
+	create_id,
+	create_ip,
+	last_updated,
+	update_id,
+	update_ip,
+	del_flag,
+	state,
+	is_org,
+	tel,
+	addres,
+	contact_name,
+	parent_org
+  </sql>
+  <select id="selectByPrimaryKey" resultType="tcSysMemberBean" parameterType="tcSysMember" >
+    select 
+	t1.id,
+	t1.city_id,
+	t1.village_id,
+	t1.town_id,
+	t1.county_id,
+	t1.province_id,
+	t1.version,
+	t1.code,
+	t1.pinyin,
+	t1.name,
+	t1.pic_url,
+	t1.type,
+	t1.certificate_no,
+	t1.certificate_pic_url,
+	t1.industry,
+	t1.sort_num,
+	t1.is_show,
+	t1.detail_info,
+	t1.note,
+	t1.date_created,
+	t1.create_id,
+	t1.create_ip,
+	t1.last_updated,
+	t1.update_id,
+	t1.update_ip,
+	t1.del_flag,
+	t1.state,
+	t1.is_org,
+	t1.tel,
+	t3.city_name,
+	t4.county_name,
+	t2.province_name,
+	t1.addres,
+	t1.contact_name,
+	t1.parent_org
+    from tc_sys_member t1
+    left join tc_adi_province t2 on (t2.province_id=t1.province_id)
+    left join tc_adi_city t3 on (t3.city_id=t1.city_id)
+    left join tc_adi_county t4 on (t4.county_id=t1.county_id)
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="tcSysMember" >
+    delete from tc_sys_member
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="tcSysMember" >
+    insert into tc_sys_member (
+	    id,
+		city_id,
+		village_id,
+		town_id,
+		county_id,
+		province_id,
+		version,
+		code,
+		pinyin,
+		name,
+		pic_url,
+		type,
+		certificate_no,
+		certificate_pic_url,
+		industry,
+		sort_num,
+		is_show,
+		detail_info,
+		note,
+		date_created,
+		create_id,
+		create_ip,
+		last_updated,
+		del_flag,
+		state,
+		is_org,
+		tel,
+		addres,
+		contact_name,
+		parent_org
+      ) values (
+	    #{id},
+		#{city_id},
+		#{village_id},
+		#{town_id},
+		#{county_id},
+		#{province_id},
+		0,
+		#{code},
+		#{pinyin},
+		#{name},
+		#{pic_url},
+		#{type},
+		#{certificate_no},
+		#{certificate_pic_url},
+		#{industry},
+		#{sort_num},
+		#{is_show},
+		#{detail_info},
+		#{note},
+		now(),
+		#{create_id},
+		#{create_ip},
+		now(),
+		'0',
+		#{state},
+		#{is_org},
+		#{tel},
+		#{addres},
+		#{contact_name},
+		#{parent_org}
+    )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcSysMember" >
+    update tc_sys_member set version=version+1
+    ,last_updated=now()
+	,update_id=#{update_id}
+	,update_ip=#{update_ip}
+	<if test="city_id!= null" >,city_id=#{city_id}</if>
+	<if test="village_id!= null" >,village_id=#{village_id}</if>
+	<if test="town_id!= null" >,town_id=#{town_id}</if>
+	<if test="county_id!= null" >,county_id=#{county_id}</if>
+	<if test="province_id!= null" >,province_id=#{province_id}</if>
+	<if test="code!= null" >,code=#{code}</if>
+	<if test="pinyin!= null" >,pinyin=#{pinyin}</if>
+	<if test="name!= null" >,name=#{name}</if>
+	<if test="pic_url!= null" >,pic_url=#{pic_url}</if>
+	<if test="type!= null" >,type=#{type}</if>
+	<if test="certificate_no!= null" >,certificate_no=#{certificate_no}</if>
+	<if test="certificate_pic_url!= null" >,certificate_pic_url=#{certificate_pic_url}</if>
+	<if test="industry!= null" >,industry=#{industry}</if>
+	<if test="sort_num!= null" >,sort_num=#{sort_num}</if>
+	<if test="is_show!= null" >,is_show=#{is_show}</if>
+	<if test="detail_info!= null" >,detail_info=#{detail_info}</if>
+	<if test="note!= null" >,note=#{note}</if>
+	<if test="del_flag!= null" >,del_flag=#{del_flag}</if>
+	<if test="state!= null" >,state=#{state}</if>
+	<if test="is_org!= null" >,is_org=#{is_org}</if>
+	<if test="tel!= null" >,tel=#{tel}</if>
+	<if test="addres!= null" >,addres=#{addres}</if>
+	<if test="addres!= null" >,addres=#{addres}</if>
+	<if test="contact_name!= null" >,contact_name=#{contact_name}</if>
+	<if test="parent_org!= null" >,parent_org=#{parent_org}</if>
+	where id=#{id}
+  </update>
+  	<!--判断是否存在-->
+    <select id="isDataYN" parameterType="tcSysMember" resultType="int">
+    select count(0) from tc_sys_member where id=#{id}
+    </select>
+    <!--
+	 * <p>信息列表 分页。</p>
+	 */
+	public List<TcSysMemberBean> findDataIsPage(IEntity dto);
+	-->
+	<select id="findDataIsPage" resultType="tcSysMemberBean" parameterType="tcSysMember" >
+   select 
+	t1.id,
+	t1.city_id,
+	t1.village_id,
+	t1.town_id,
+	t1.county_id,
+	t1.province_id,
+	t1.version,
+	t1.code,
+	t1.pinyin,
+	t1.name,
+	t1.pic_url,
+	t1.type,
+	t1.certificate_no,
+	t1.certificate_pic_url,
+	t1.industry,
+	t1.sort_num,
+	t1.is_show,
+	t1.detail_info,
+	t1.note,
+	t1.date_created,
+	t1.create_id,
+	t1.create_ip,
+	t1.last_updated,
+	t1.update_id,
+	t1.update_ip,
+	t1.del_flag,
+	t1.state,
+	t1.is_org,
+	t1.tel,
+	t3.city_name,
+	t4.county_name,
+	t2.province_name,
+	t1.addres,
+	t1.contact_name,
+	t1.parent_org
+    from tc_sys_member t1
+    left join tc_adi_province t2 on (t2.province_id=t1.province_id)
+    left join tc_adi_city t3 on (t3.city_id=t1.city_id)
+    left join tc_adi_county t4 on (t4.county_id=t1.county_id)
+    where 1=1 
+    <choose>
+    	<when test="del_flag!=null">
+    		and t1.del_flag=#{del_flag}
+    	</when>
+    	<otherwise>
+    	    and t1.del_flag='0'
+    	</otherwise>
+    </choose>
+    <if test="city_id!= null and city_id!=''" > and t1.city_id=#{city_id}</if>
+	<if test="village_id!= null and village_id!=''" > and t1.village_id=#{village_id}</if>
+	<if test="town_id!= null and town_id!=''" > and t1.town_id=#{town_id}</if>
+	<if test="county_id!= null and county_id!=''" > and t1.county_id=#{county_id}</if>
+	<if test="province_id!= null and province_id!=''" > and t1.province_id=#{province_id}</if>
+	<choose>
+		<when test="keyword!=null and keyword!=''">
+			and (t1.code like concat('%',#{keyword},'%') or
+			t1.pinyin like concat('%',#{keyword},'%') or 
+			t1.name like concat('%',#{keyword},'%'))
+		</when>
+		<otherwise>
+			<if test="code!= null" > and t1.code=#{code}</if>
+			<if test="pinyin!= null" > and t1.pinyin=#{pinyin}</if>
+			<if test="name!= null" > and t1.name=#{name}</if>
+		</otherwise>
+	</choose>
+	<if test="pic_url!= null" > and t1.pic_url=#{pic_url}</if>
+	<if test="type!= null" > and t1.type=#{type}</if>
+	<if test="certificate_no!= null" > and t1.certificate_no=#{certificate_no}</if>
+	<if test="certificate_pic_url!= null" > and t1.certificate_pic_url=#{certificate_pic_url}</if>
+	<if test="industry!= null" > and t1.industry=#{industry}</if>
+	<if test="is_show!= null" > and t1.is_show=#{is_show}</if>
+	<if test="note!= null" > and t1.note=#{note}</if>
+	<if test="state!= null and state!= ''" > and t1.state=#{state}</if>
+	<if test="is_org!= null" > and t1.is_org=#{is_org}</if>
+    order by t1.code asc
+    </select>
+	<!-- 
+	 * <p>信息列表。</p>
+	public List<TcSysMemberBean> findDataIsList(IEntity dto); -->
+	<select id="findDataIsList" resultType="tcSysMemberBean" parameterType="tcSysMember" >
+	select
+	<include refid="Base_Column_List"/>
+	from tc_sys_member
+    where 1=1
+    <choose>
+    	<when test="del_flag!=null">
+    		and del_flag=#{del_flag}
+    	</when>
+    	<otherwise>
+    	    and del_flag='0'
+    	</otherwise>
+    </choose>
+    <if test="city_id!= null" > and city_id=#{city_id}</if>
+	<if test="village_id!= null" > and village_id=#{village_id}</if>
+	<if test="town_id!= null" > and town_id=#{town_id}</if>
+	<if test="county_id!= null" > and county_id=#{county_id}</if>
+	<if test="province_id!= null" > and province_id=#{province_id}</if>
+	<if test="code!= null" > and code=#{code}</if>
+	<if test="pinyin!= null" > and pinyin=#{pinyin}</if>
+	<if test="name!= null" > and name=#{name}</if>
+	<if test="pic_url!= null" > and pic_url=#{pic_url}</if>
+	<if test="type!= null" > and type=#{type}</if>
+	<if test="certificate_no!= null" > and certificate_no=#{certificate_no}</if>
+	<if test="certificate_pic_url!= null" > and certificate_pic_url=#{certificate_pic_url}</if>
+	<if test="industry!= null" > and industry=#{industry}</if>
+	<if test="is_show!= null" > and is_show=#{is_show}</if>
+	<if test="note!= null" > and note=#{note}</if>
+	<if test="state!= null" > and state=#{state}</if>
+	<if test="is_org!= null" > and is_org=#{is_org}</if>
+    order by code asc
+   </select>
+   <!-- 逻辑删除 -->
+   <update id="deleteById" parameterType="tcSysMember">
+	  	update tc_sys_member set version=version+1,last_updated=now(),del_flag='1',update_id=#{update_id}
+	   ,update_ip=#{update_ip}
+	  	where id=#{id}
+   </update>
+   <!-- 恢复逻辑删除的数据 -->
+   <update id="recoveryDataById" parameterType="tcSysMember">
+	  	update tc_sys_member set version=version+1,last_updated=now(),del_flag='0',update_id=#{update_id}
+	   ,update_ip=#{update_ip}
+	  	where id=#{id}
+   </update>
+   <select id="findDataIsListTop" resultType="tcSysMemberBean" parameterType="tcSysMember" >
+   <choose>
+   		<!-- 首页  坑 -->
+   		<when test="note=='index'">
+	   		select * from (
+				select
+				<include refid="Base_Column_List"/>
+				from tc_sys_member
+				where type='0' and del_flag='0'
+				order by date_created desc
+				limit 0,10
+			) as t1
+			union
+			select * from (
+				select
+				<include refid="Base_Column_List"/>
+				from tc_sys_member
+				where type='1' and del_flag='0'
+				order by date_created desc
+				limit 0,10
+			) as t1
+			union
+			select * from (
+				select
+				<include refid="Base_Column_List"/>
+				from tc_sys_member
+				where type='2' and del_flag='0'
+				order by date_created desc
+				limit 0,10
+			) as t1
+			union
+			select * from (
+				select
+				<include refid="Base_Column_List"/>
+				from tc_sys_member
+				where type='3' and del_flag='0'
+				order by date_created desc
+				limit 0,10
+			) as t1
+   		</when>
+   		<otherwise>
+		select * from (
+			select
+			<include refid="Base_Column_List"/>
+			from tc_sys_member
+			where type='0' and del_flag='0'
+			order by date_created desc
+			limit 0,6
+		) as t1
+		union
+		select * from (
+			select
+			<include refid="Base_Column_List"/>
+			from tc_sys_member
+			where type='1' and del_flag='0'
+			order by date_created desc
+			limit 0,6
+		) as t1
+		union
+		select * from (
+			select
+			<include refid="Base_Column_List"/>
+			from tc_sys_member
+			where type='2' and del_flag='0'
+			order by date_created desc
+			limit 0,6
+		) as t1
+		union
+		select * from (
+			select
+			<include refid="Base_Column_List"/>
+			from tc_sys_member
+			where type='3' and del_flag='0'
+			order by date_created desc
+			limit 0,6
+		) as t1
+		</otherwise>
+   </choose>
+   </select>
+</mapper>

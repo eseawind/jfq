@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+    <package name="sys_info" namespace="/h" extends="jfq-default" >
+    	<default-interceptor-ref name="jfq-auth" /> 
+		<!-- 资讯管理 -->
+		<action name="s001_*" class="s001Action" method="{1}">
+			<result name="init">/WEB-INF/pages/admin/sys/S001.jsp</result>
+			<result name="edit">/WEB-INF/pages/admin/sys/S001_01.jsp</result>
+			<result name="view">/WEB-INF/pages/admin/sys/S001_02.jsp</result>
+			<result name="recycle">/WEB-INF/pages/admin/sys/S001_03.jsp</result>
+			<result name="success" type="chain">s001_init</result>
+		</action>
+		<!-- 栏目管理 -->
+		<action name="s002_*" class="s002Action" method="{1}">
+			<result name="init">/WEB-INF/pages/admin/sys/S002.jsp</result>
+			<result name="edit">/WEB-INF/pages/admin/sys/S002_01.jsp</result>
+			<result name="success" type="chain">s002_init</result>
+		</action>
+		<!-- 友情链接 管理 -->
+		<action name="s003_*" class="s003Action" method="{1}">
+			<result name="init">/WEB-INF/pages/admin/sys/S003.jsp</result>
+			<result name="edit">/WEB-INF/pages/admin/sys/S003_01.jsp</result>
+			<result name="view">/WEB-INF/pages/admin/sys/S003_02.jsp</result>
+			<result name="recycle">/WEB-INF/pages/admin/sys/S003_03.jsp</result>
+			<result name="success" type="chain">s003_init</result>
+		</action>
+		<!-- 合作商户 管理 -->
+		<action name="s004_*" class="s004Action" method="{1}">
+			<result name="init">/WEB-INF/pages/admin/sys/S004.jsp</result>
+			<result name="edit">/WEB-INF/pages/admin/sys/S004_01.jsp</result>
+			<result name="view">/WEB-INF/pages/admin/sys/S004_02.jsp</result>
+			<result name="recycle">/WEB-INF/pages/admin/sys/S004_03.jsp</result>
+			<result name="success" type="chain">s004_init</result>
+		</action>
+		<!-- 导航 管理 -->
+		<action name="s005_*" class="s005Action" method="{1}">
+			<result name="init">/WEB-INF/pages/admin/sys/S005.jsp</result>
+			<result name="success" type="chain">s005_init</result>
+		</action>
+	</package>
+</struts>
