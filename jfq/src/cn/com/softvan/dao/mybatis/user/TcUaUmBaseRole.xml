@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.softvan.dao.daointer.user.ITcUaUmBaseRoleDao" >
+
+	 <sql id="Base_Column_List" >
+	    role_id, description,ro_name, ro_priority, ro_super,create_id, create_ip, date_created, last_updated, update_id, 
+	    update_ip
+	  </sql>
+	<resultMap id="roleMap" type="tcUaUmBaseRoleBean">
+		<id property="role_id" column="role_id" />
+		<result property="ro_name" column="ro_name"/>
+		<result property="ro_priority" column="ro_priority"/>
+		<result property="description" column="description"/>
+		<result property="ro_super" column="ro_super"/>
+		<result property="ro_source" column="ro_source"/>
+		<collection property="perms" column="role_id" javaType="java.util.Set" select="getPerms" ofType="java.lang.String">
+		</collection>
+		
+	</resultMap>
+	
+	<select id="getPerms" parameterType="HashMap" resultType="java.lang.String">
+	     select 
+		      url
+	     from tc_ua_um_permission
+	     where role_id=#{role_id}
+     </select>
+     <resultMap id="roleMap2" type="tcUaUmBaseRoleBean">
+		<id property="role_id" column="role_id" />
+		<result property="ro_name" column="ro_name"/>
+		<result property="ro_priority" column="ro_priority"/>
+		<result property="description" column="description"/>
+		<result property="ro_super" column="ro_super"/>
+		<collection property="perms" column="role_id" javaType="java.util.Set" select="getPerms2" ofType="java.lang.String">
+		</collection>
+	</resultMap>
+	<select id="getPerms2" parameterType="HashMap" resultType="java.lang.String">
+	    select 
+		     per.url
+	     from tc_ua_um_permission per
+            
+	     where per.role_id=#{role_id}
+   </select>
+     
+     <select id="findDataIsList" resultType="tcUaUmBaseRoleBean" parameterType="tcUaUmBaseRole" >
+		select 
+	     <include refid="Base_Column_List"/>
+		    from tc_ua_um_base_role
+		    where  del_flag!='1'
+		    order by cast(ro_priority as signed) asc,date_created desc
+   </select>
+ 
+ 	
+ 
+ 
+ <select id="selectByPrimaryKey" resultMap="roleMap" parameterType="tcUaUmBaseRole" >
+     select 
+    <include refid="Base_Column_List" />
+    from tc_ua_um_base_role
+    where role_id = #{role_id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    
+    delete from tc_ua_um_base_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="tcUaUmBaseRole" >
+    insert into tc_ua_um_base_role (
+	    role_id,
+		description,
+		ro_name,
+		ro_priority,
+		ro_super,
+		ro_source,
+		date_created,
+		create_id,
+		create_ip,
+		last_updated,
+		update_id,
+		update_ip,
+		version,
+		del_flag
+      ) values (
+	    #{role_id},
+		#{description},
+		#{ro_name},
+		#{ro_priority},
+		#{ro_super},
+		#{ro_source},
+		now(),
+		#{create_id},
+		#{create_ip},
+		now(),
+		#{update_id},
+		#{update_ip},
+		 0,
+		'0'
+    )
+  </insert>
+  
+  
+   <!-- 逻辑删除 -->
+   <update id="deleteById" parameterType="tcUaUmBaseRole">
+	  	update tc_ua_um_base_role set version=version+1,last_updated=now(),del_flag='1',update_id=#{update_id}
+	   ,update_ip=#{update_ip}
+	  	where role_id=#{role_id}
+   </update>
+   
+   
+   
+  <insert id="insertSelective" parameterType="tcUaUmBaseRole" >
+    
+    insert into tc_ua_um_base_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="role_id != null" >
+        role_id,
+      </if>
+      <if test="ro_name != null" >
+        ro_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="ro_priority != null" >
+        ro_priority,
+      </if>
+      <if test="ro_super != null" >
+        ro_super,
+      </if>
+      <if test="ro_source != null" >
+        ro_source,
+      </if>
+      <if test="create_id != null" >
+        create_id,
+      </if>
+      <if test="create_ip != null" >
+        create_ip,
+      </if>
+      <if test="date_created != null" >
+        date_created,
+      </if>
+      <if test="last_updated != null" >
+        last_updated,
+      </if>
+      <if test="update_id != null" >
+        update_id,
+      </if>
+      <if test="update_ip != null" >
+        update_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="role_id != null" >
+        #{role_id,jdbcType=VARCHAR},
+      </if>
+      <if test="ro_name != null" >
+        #{ro_name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ro_priority != null" >
+        #{ro_priority,jdbcType=VARCHAR},
+      </if>
+      <if test="ro_super != null" >
+        #{ro_super,jdbcType=VARCHAR},
+      </if>
+      <if test="ro_source != null" >
+        #{ro_source,jdbcType=VARCHAR},
+      </if>
+       
+      <if test="create_id != null" >
+        #{create_id,jdbcType=VARCHAR},
+      </if>
+      <if test="create_ip != null" >
+        #{create_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="date_created != null" >
+        #{date_created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="last_updated != null" >
+        #{last_updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="update_id != null" >
+        #{update_id,jdbcType=VARCHAR},
+      </if>
+      <if test="update_ip != null" >
+        #{update_ip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.softvan.dao.entity.user.TcUaUmBaseRole" >
+    
+    update tc_ua_um_base_role
+       set version=version+1,last_updated=now(),update_id=#{update_id} ,update_ip=#{update_ip}
+	   <if test="description != null" >
+        ,description = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="ro_name != null" >
+        ,ro_name = #{ro_name,jdbcType=VARCHAR}
+      </if>
+      <if test="ro_priority != null" >
+        ,ro_priority = #{ro_priority,jdbcType=VARCHAR}
+      </if>
+      <if test="ro_super != null" >
+        ,ro_super = #{ro_super,jdbcType=VARCHAR}
+      </if>
+      <if test="ro_source != null" >
+        ,ro_source = #{ro_source,jdbcType=VARCHAR}
+      </if>
+      <if test="create_id != null" >
+        ,create_id = #{create_id,jdbcType=VARCHAR}
+      </if>
+      <if test="create_ip != null" >
+        ,create_ip = #{create_ip,jdbcType=VARCHAR}
+      </if>
+      where role_id = #{role_id,jdbcType=VARCHAR}
+  </update>
+ 
+  
+    <!--  public void savePermission(IEntity dto,@Param("perms")Set<String> perms); -->
+	<insert id="savePermission" parameterType="java.util.Set">
+		insert into tc_ua_um_permission  
+        (role_id,url,date_created,create_id,create_ip,last_updated,update_id,update_ip)values  
+        <foreach collection="perms" item="item" index="index"  
+            separator=",">  
+            (#{role_id},#{item,jdbcType=VARCHAR},now(),#{create_id},#{create_ip},now(),#{update_id},#{update_ip})  
+        </foreach> 
+	</insert>
+	
+	<!-- public void deletePermById(@Param("role_id")String roleId); -->
+	<delete id="deletePermById" >
+		delete from tc_ua_um_permission where role_id=#{role_id}
+    </delete>
+    
+    <!--判断是否存在-->
+   <select id="isDataYN" parameterType="tcUaUmBaseRole" resultType="int">
+      select count(0) from tc_ua_um_base_role where role_id=#{role_id}
+   </select>
+</mapper>

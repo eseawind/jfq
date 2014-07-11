@@ -6,7 +6,7 @@
  * -------- ----------- ------------ ------------------------------------------
  * 1.00     2014-02-28  wuxiaogang   程序・发布
  * -------- ----------- ------------ ------------------------------------------
- * Copyright 2014 jfq System. - All Rights Reserved.
+ * Copyright 2014 童励 System. - All Rights Reserved.
  *
  */
 --%>
@@ -16,12 +16,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path;
-	request.setAttribute("path", path);
-	request.setAttribute("basePath", basePath);
+String path = request.getContextPath();
+String basePath = null;
+if (request.getServerPort() != 80) {
+	basePath = request.getScheme() + "://" + request.getServerName() 
+			+ ":" + request.getServerPort() + path;	
+} else {
+	basePath = request.getScheme() + "://" + request.getServerName() + path;
+}
+request.setAttribute("path", path);
+request.setAttribute("basePath", basePath);
 %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="zh-CN" class="ie8 no-js"> <![endif]-->
@@ -96,11 +100,11 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				<label class="checkbox">
-				<input type="checkbox" name="remember" value="1"/> remember
-				</label>
+				<!-- <label class="checkbox">
+				<input type="checkbox" name="remember" value="1"/> 自动登陆
+				</label> -->
 				<button type="submit" class="btn blue pull-right">
-				登录 <i class="m-icon-swapright m-icon-white"></i>
+				登陆 <i class="m-icon-swapright m-icon-white"></i>
 				</button>            
 			</div>
 		</form>

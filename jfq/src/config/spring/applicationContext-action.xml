@@ -16,7 +16,9 @@
 		<!-- <property name="userLogsManager" ref="userLogsManager"></property> -->
 	</bean>
 	<!-- 系统登陆与系统首页 Action -->
-	<bean id="homeAction" class="cn.com.softvan.web.action.HomeAction" scope="prototype"/>
+	<bean id="homeAction" class="cn.com.softvan.web.action.HomeAction" scope="prototype">
+		<property name="userManager" ref="userManager"></property>
+	</bean>
 	<!-- 行政区划 管理 -->
 	<bean id="areaAction" class="cn.com.softvan.web.action.adi.AreaAction" scope="prototype">
 		<property name="areaManager" ref="areaManager"></property>
@@ -43,34 +45,5 @@
 	<bean id="s005Action" class="cn.com.softvan.web.action.sys.S005Action" scope="prototype">
 	</bean>
 	<!--========================= 系统管理  end=================================== -->
-	<!-- ==========================前台  begin==================================== -->
-	<!-- ==========================前台  begin==================================== -->
-	<!-- 首页 -->
-	<bean id="j001Action" class="cn.com.softvan.web.action.jfq.J001Action" scope="prototype">
-		<property name="newsManager" ref="newsManager"></property>
-		<property name="newsTypeManager" ref="newsTypeManager"></property>
-		<property name="parterManager" ref="parterManager"></property>
-		<property name="memberManager" ref="memberManager"></property>
-	</bean>
-	<!-- 栏目页 -->
-	<bean id="j002Action" class="cn.com.softvan.web.action.jfq.J002Action" scope="prototype">
-		<property name="newsManager" ref="newsManager"></property>
-		<property name="newsTypeManager" ref="newsTypeManager"></property>
-	</bean>
-	<!-- 内容页 -->
-	<bean id="j003Action" class="cn.com.softvan.web.action.jfq.J003Action" scope="prototype">
-		<property name="newsManager" ref="newsManager"></property>
-		<property name="newsTypeManager" ref="newsTypeManager"></property>
-	</bean>
-	<!-- 搜索结果页 -->
-	<bean id="j004Action" class="cn.com.softvan.web.action.jfq.J004Action" scope="prototype">
-		<property name="newsManager" ref="newsManager"></property>
-		<property name="newsTypeManager" ref="newsTypeManager"></property>
-		<property name="memberManager" ref="memberManager"></property>
-	</bean>
-	<!-- 友情链接 -->
-	<bean id="j005Action" class="cn.com.softvan.web.action.jfq.J005Action" scope="prototype">
-		<property name="parterManager" ref="parterManager"></property>
-	</bean>
-	<!-- ==========================前台  end==================================== -->
+	
 </beans>

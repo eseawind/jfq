@@ -18,6 +18,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -179,6 +180,18 @@ public class ImageUtils {
 	 
 		
 		    public static SimpleDateFormat sdf = new SimpleDateFormat("/yyyyMM/");
+		   // n0图象宽度
+			private static final int IMAGE_N0_WIDTH = Integer.parseInt(Resources.getData("IMAGE_N0_WIDTH").trim());
+			// n0图象高度
+			private static final int IMAGE_N0_HEIGHT = Integer.parseInt(Resources.getData("IMAGE_N0_WIDTH").trim());
+			// n1图象宽度
+			private static final int IMAGE_N1_WIDTH = Integer.parseInt(Resources.getData("IMAGE_N1_WIDTH").trim());
+			// n1图象高度
+			private static final int IMAGE_N1_HEIGHT = Integer.parseInt(Resources.getData("IMAGE_N1_WIDTH").trim());
+			// n2图象宽度
+			private static final int IMAGE_N2_WIDTH = Integer.parseInt(Resources.getData("IMAGE_N2_WIDTH").trim());
+			// n2图象高度
+			private static final int IMAGE_N2_HEIGHT = Integer.parseInt(Resources.getData("IMAGE_N2_WIDTH").trim());
 			// n3图像宽度
 			private static final int IMAGE_N3_WIDTH = Integer.parseInt(Resources.getData("IMAGE_N3_WIDTH").trim());
 			// n3图像高度
@@ -226,7 +239,7 @@ public class ImageUtils {
 		    		
 		    		imagePath=path+newFileName;
 		    		if(!imagePath.equals("")){
-		    			imagePath.replace("n4", "n3");
+		    			imagePath.replace("n4", "n1");
 		    		}
 		    		 
 				 } catch (IOException e) {
@@ -244,23 +257,65 @@ public class ImageUtils {
 		        String dirName="image";
 				String saveUrl = ""; // 文件保存目录URL(返前台)
 				// n0到n4保存路径
+				String savePathN0 = "";
+				String savePathN1 = "";
+				String savePathN2 = "";
 				String savePathN3 = "";
 				//子文件夹
 				String forDate=sdf.format(new Date());
 				  // 文件保存目录路径
+					savePathN0 = Resources.getData("UPLOAD_ROOT_FOLDER") + dirName
+							+ PathCommonConstant.PATH_SEPARATOR + "n0"
+							+forDate;
+					savePathN1 = Resources.getData("UPLOAD_ROOT_FOLDER") + dirName
+							+ PathCommonConstant.PATH_SEPARATOR + "n1"
+							+forDate;
+					savePathN2 = Resources.getData("UPLOAD_ROOT_FOLDER") + dirName
+							+ PathCommonConstant.PATH_SEPARATOR + "n2"
+							+forDate;
 					savePathN3 = Resources.getData("UPLOAD_ROOT_FOLDER") + dirName
 							+ PathCommonConstant.PATH_SEPARATOR + "n3"
 							+forDate;
 					 
 					// 创建文件夹
+					File saveDirFileN0 = new File(savePathN0);
+					if (!saveDirFileN0.exists()) {
+						saveDirFileN0.mkdirs();
+					}
+					File saveDirFileN1 = new File(savePathN1);
+					if (!saveDirFileN1.exists()) {
+						saveDirFileN1.mkdirs();
+					}
+					File saveDirFileN2 = new File(savePathN2);
+					if (!saveDirFileN2.exists()) {
+						saveDirFileN2.mkdirs();
+					}
 					File saveDirFileN3 = new File(savePathN3);
 					if (!saveDirFileN3.exists()) {
 						saveDirFileN3.mkdirs();
 					}
 					// 检查写权限
+					if (!saveDirFileN0.canWrite()) {
+						return "上传目录没有写权限";
+					}
+					if (!saveDirFileN1.canWrite()) {
+						return "上传目录没有写权限";
+					}
+					if (!saveDirFileN2.canWrite()) {
+						return "上传目录没有写权限";
+					}
 					if (!saveDirFileN3.canWrite()) {
 						return "上传目录没有写权限";
 					}
+				ImageUtils.resizeNx(savePath, savePathN0, newFileName,
+						newFileName, IMAGE_N0_WIDTH, IMAGE_N0_HEIGHT,
+						true);
+				ImageUtils.resizeNx(savePath, savePathN1, newFileName,
+						newFileName, IMAGE_N1_WIDTH, IMAGE_N1_HEIGHT,
+						false);
+				ImageUtils.resizeNx(savePath, savePathN2, newFileName,
+						newFileName, IMAGE_N2_WIDTH, IMAGE_N2_HEIGHT,
+						false);
 				ImageUtils.resizeNx(savePath, savePathN3, newFileName,
 						newFileName, IMAGE_N3_WIDTH, IMAGE_N3_HEIGHT,
 						false);

@@ -50,6 +50,7 @@
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu">
+						<li><a href="${basePath}/h/home_edit.ac?id=<%=user.getId()%>"><i class="fa fa-cogs"></i> 信息修改</a></li>
 						<li><a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i> 全屏展示</a></li>
 						<li class="divider"></li>
 						<li><a href="${basePath}/h/s005_init.ac"><i class="fa fa-book"></i> 导航管理</a></li>

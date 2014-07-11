@@ -23,13 +23,15 @@
 		<setting name="defaultStatementTimeout" value="25000" />
 	</settings>
 	<typeAliases>
+		<!-- 行政区划 begin -->
+		<typeAlias type="cn.com.softvan.bean.adi.AreaBean" alias="AreaBean"/>
+		<!-- 行政区划 end -->
 		<!-- 资讯管理模块 begin -->
 		<!-- bean class -->
 		<typeAlias type="cn.com.softvan.bean.sys.TcSysNewsBean" alias="tcSysNewsBean"/>
 		<typeAlias type="cn.com.softvan.bean.sys.TcSysNewsTypeBean" alias="tcSysNewsTypeBean"/>
 		<typeAlias type="cn.com.softvan.bean.sys.TcSysParterBean" alias="tcSysParterBean"/>
 		<typeAlias type="cn.com.softvan.bean.sys.TcSysMemberBean" alias="tcSysMemberBean"/>
-		<typeAlias type="cn.com.softvan.bean.adi.AreaBean" alias="AreaBean"/>
 		<!-- entity class -->
 		<typeAlias type="cn.com.softvan.dao.entity.sys.TcSysNews" alias="tcSysNews"/>
 		<typeAlias type="cn.com.softvan.dao.entity.sys.TcSysNewsType" alias="tcSysNewsType"/>
@@ -37,7 +39,15 @@
 		<typeAlias type="cn.com.softvan.dao.entity.sys.TcSysParter" alias="tcSysParter"/>
 		<typeAlias type="cn.com.softvan.dao.entity.sys.TcSysMember" alias="tcSysMember"/>
 		<!-- 资讯管理模块 end -->
-		<!-- jfq模块 end -->
+		<!-- 用户角色  begin-->
+		 <!-- bean class  -->
+		<typeAlias type="cn.com.softvan.bean.backuser.TcUaUmBaseUserBean" alias="tcUaUmBaseUserBean"/>
+		<typeAlias type="cn.com.softvan.bean.backuser.TcUaUmBaseRoleBean" alias="tcUaUmBaseRoleBean"/>
+		 <!-- entity class -->
+		<typeAlias type="cn.com.softvan.dao.entity.user.TcUaUmBaseUser" alias="tcUaUmBaseUser"/>
+		<typeAlias type="cn.com.softvan.dao.entity.user.TcUaUmBaseRole" alias="tcUaUmBaseRole"/>
+		
+		<!-- 用户角色  end-->
 	</typeAliases>
 	<!-- 插件 -->
 	<plugins>
@@ -48,6 +58,10 @@
 	</plugins>
 	<!-- xxx -->
 	<mappers>
+		<!-- 行政区划 begin -->
+		<mapper resource="/cn/com/softvan/dao/mybatis/adi/area.xml"/>
+		<!-- 行政区划 end -->
+		<!-- 微信后台模块 begin-->
 		<!-- 系统管理模块 begin -->
 		<mapper resource="/cn/com/softvan/dao/mybatis/sys/TcSysVariable.xml"/>
 		<mapper resource="/cn/com/softvan/dao/mybatis/sys/TcSysNews.xml"/>
@@ -55,7 +69,14 @@
 		<mapper resource="/cn/com/softvan/dao/mybatis/sys/TcSysNewsVsType.xml"/>
 		<mapper resource="/cn/com/softvan/dao/mybatis/sys/TcSysParter.xml"/>
 		<mapper resource="/cn/com/softvan/dao/mybatis/sys/TcSysMember.xml"/>
-		<mapper resource="/cn/com/softvan/dao/mybatis/adi/area.xml"/>
 		<!-- 系统管理模块 end -->
+		<!-- 用户信息 begin-->	
+		<mapper resource="/cn/com/softvan/dao/mybatis/user/TcUaUmBaseRole.xml"/>
+		<mapper resource="/cn/com/softvan/dao/mybatis/user/TcUaUmBaseUser.xml"/>
+		<mapper resource="/cn/com/softvan/dao/mybatis/user/TcUaUmOperationLog.xml"/>
+		<mapper resource="/cn/com/softvan/dao/mybatis/user/TcUaUmPermission.xml"/>
+		<mapper resource="/cn/com/softvan/dao/mybatis/user/TcUaUmPermissionGroup.xml"/>
+		<mapper resource="/cn/com/softvan/dao/mybatis/user/TcUaUmPermissionGroupRole.xml"/>
+		<!-- 用户信息 end-->	
 	</mappers>
 </configuration>

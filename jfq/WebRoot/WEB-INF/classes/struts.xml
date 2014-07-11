@@ -55,6 +55,7 @@
 		    <result name="exception">/WEB-INF/pages/error/exception.jsp</result>
 			<result name="error">/WEB-INF/pages/error/500.jsp</result>
 			<result name="login">/WEB-INF/pages/admin/login.jsp</result>
+			<result name="noauth">/WEB-INF/pages/admin/noauth.jsp</result>
 		</global-results>
 		 <global-exception-mappings>
 			<exception-mapping result="error" exception="java.lang.Exception" />
@@ -75,6 +76,7 @@
 		<action name="home_*" class="homeAction" method="{1}">
 		    <result type="redirect" name="home">/h/home_init.ac</result>
 		    <result name="init">/WEB-INF/pages/admin/home/H001.jsp</result>
+		    <result name="useredit">/WEB-INF/pages/admin/home/H002.jsp</result>
 		</action>
 	</package>
 	<!-- 加载所有struts开头的配置文件  -->

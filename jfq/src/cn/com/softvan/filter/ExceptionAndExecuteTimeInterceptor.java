@@ -20,8 +20,8 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 public class ExceptionAndExecuteTimeInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = -6442157043443401725L;
 
-	private static final Log log = LogFactory.getLog(ExceptionAndExecuteTimeInterceptor.class);
-	
+	private static final Log log = LogFactory
+			.getLog(ExceptionAndExecuteTimeInterceptor.class);
 	private static final String EQUAL_SIGN = "=";
 	private static final String PLUS_SIGN = "+";
 	private static final String AND = "&";
@@ -44,8 +44,7 @@ public class ExceptionAndExecuteTimeInterceptor extends AbstractInterceptor {
         }
 		request.setAttribute("path", path);
 		request.setAttribute("basePath", basePath);
-		
-////		log.info("basePath值："+ basePath);
+//		log.info("basePath值："+ basePath);
 		String remoteHost = request.getRemoteAddr(); // 获取客户端的主机名
 		String requestURL = request.getRequestURL().toString(); // 获取客户端请求的URL
 		Map<String, String[]> paramsMap = (Map<String, String[]>) request
@@ -91,7 +90,6 @@ public class ExceptionAndExecuteTimeInterceptor extends AbstractInterceptor {
 			String msg = "抛出了异常！" + remoteHost + "的请求，URL:" + requestURL
 					+ "，参数：" + paramsStr;
 			log.error(msg, e);
-//			log.error("异常!", e);
 			return "exception";
 		}
 		// 获得Action执行的结束时间

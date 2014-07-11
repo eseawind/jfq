@@ -8,6 +8,17 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <!-- XSS过滤器  -->
+	<!-- <filter> 
+	    <filter-name>XSSFilter</filter-name> 
+	    <filter-class> 
+	        cn.com.softvan.filter.XssFilter 
+	    </filter-class> 
+	</filter> 
+	<filter-mapping> 
+	    <filter-name>XSSFilter</filter-name> 
+	    <url-pattern>/*</url-pattern> 
+	</filter-mapping> -->
   <filter>
     <filter-name>encoding</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -91,6 +102,50 @@
   <error-code>404</error-code>
   	<location>/WEB-INF/pages/error/404.jsp</location>
   </error-page>
+  <!-- js.css缓存过滤器 -->
+    <!-- <filter>  
+        <description>给某些文件加上缓存.</description>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <filter-class>cn.com.softvan.filter.CacheControlFilter</filter-class>  
+        <init-param>  
+        	<description>max-age单位(秒).</description>  
+            <param-name>Cache-Control</param-name>  
+            <param-value>public,max-age=259200</param-value>  
+        </init-param>  
+        <init-param>  
+            <param-name>Pragma</param-name>  
+            <param-value>public</param-value>  
+        </init-param>
+        <init-param>  
+        	<description>Expires单位(秒).</description>  
+            <param-name>Expires</param-name>  
+            <param-value>259200</param-value>  
+        </init-param>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <url-pattern>*.js</url-pattern>  
+    </filter-mapping>
+     <filter-mapping>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <url-pattern>*.ico</url-pattern>  
+    </filter-mapping>  
+    <filter-mapping>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <url-pattern>*.css</url-pattern>  
+    </filter-mapping>
+    <filter-mapping>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <url-pattern>*.jpg</url-pattern>  
+    </filter-mapping>
+    <filter-mapping>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <url-pattern>*.png</url-pattern>  
+    </filter-mapping>
+     <filter-mapping>  
+        <filter-name>CacheControlFilter</filter-name>  
+        <url-pattern>*.gif</url-pattern>
+    </filter-mapping> -->
   <session-config>
     <session-timeout>120</session-timeout>
   </session-config>
